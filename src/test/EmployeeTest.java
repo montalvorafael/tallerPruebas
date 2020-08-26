@@ -61,8 +61,44 @@ public class EmployeeTest {
 		
 	}
 	
+	
+	/*Para esta prueba el tipo de empleado es Supervisor.Además, el currency o 
+	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
+	 El resultado esperado viene a ser igual al rmu*/
+	
+	@Test
+	public void CalculateYearBonusWorkerUSDtest() {
+		Employee employee = new Employee(350,"USD",20,EmployeeType.Worker);
+		
+		double salario= employee.CalculateYearBonus();
+		assertEquals(386.0, salario,5.0);
+	}
+	
+	/*Para esta prueba el tipo de empleado es Supervisor.Además, el currency o 
+	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
+	 El resultado esperado para esta prueba, viene de: salario + rmu * 0.5*/
+	
+	@Test
+	public void CalculateYearBonusSupervisorUSDtest() {
+		Employee employee = new Employee(450,"USD",20,EmployeeType.Supervisor);
+		
+		double salario= employee.CalculateYearBonus();
+		assertEquals(643.5, salario,5.0);
+	}
+	
+	/*Para esta prueba el tipo de empleado es Manager.Además, el currency o 
+	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
+	 El resultado esperado para esta prueba, viene de:salario + rmu * 1.0*/
+	
+	@Test
+	public void CalculateYearBonusManagerUSDtest() {
+		Employee employee = new Employee(600,"USD",20,EmployeeType.Manager);
+		
+		double salario= employee.CalculateYearBonus();
+		assertEquals(986.0, salario,5.0);
+	}
 
-
+	
 	
 
 }

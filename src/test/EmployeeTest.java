@@ -11,98 +11,161 @@ import tallerpruebas.EmployeeType;
 
 public class EmployeeTest {
 	
-	/*public Employee createEmployee(float salary, String currency, 
-	        float bonusPercentage, EmployeeType employeeType){
-		return new Employee(salary, currency, bonusPercentage,employeeType) ;
-	}
-	Se deberia crear esto por la eficiencia y verificar si es nulo esas dos cosas
-	creo que dijo el profe
-	*/
+	// PRUEBAS PARA METODO cs()
 	
-	@Test
-	public void CalculateYearBonusWorkerEurotest() {
-		Employee employee = new Employee(450,"euro",10,EmployeeType.Worker);
-		assertEquals(386.0, employee.CalculateYearBonus(),5.0);
-	}
-	
-	@Test
-	public void CalculateYearBonusSupervisorEurotest() {
-		Employee employee = new Employee(550,"euro",10,EmployeeType.Supervisor);
-		assertEquals(715.5, employee.CalculateYearBonus(),5.0);
-	}
-	
-	@Test
-	public void CalculateYearBonusManagerEurotest() {
-		Employee employee = new Employee(750,"euro",10,EmployeeType.Manager);
-		assertEquals(1098.5, employee.CalculateYearBonus(),5.0);
-	}
-	
-	/*Para esta prueba el tipo de empleado es Worker.Además, el currency o 
-	 tipo de moneda es "USD", por ello el salario queda igual al entrar al
-     condicional.El resultado esperado para este caso es el mismo salario esto 
-     debido a que el mes es par, por lo que no se le añade el decimo a su salario */
+	/**
+	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
+	 *tipo de moneda es "USD", por ello el salario queda igual al entrar al
+     *condicional. El resultado esperado para este caso es el mismo salario, esto 
+     *debido a que el mes es par, por lo que no se le añade el decimo a su salario 
+     **/
 	@Test
 	public void csWorkerUSDTest() {
-		Employee employee = new Employee(450,"USD",10,EmployeeType.Worker);
-		assertEquals(450,employee.cs(),5);
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Worker);
+		assertEquals(500f, employee.cs(), 0.0f);
 	}
 	
-	/*Para esta prueba el tipo de empleado es Supervisor. Además, el currency o tipo 
-	 de moneda es "USD", por ello el salario queda igual al entrar al condicional. 
-	 El resultado esperado para este caso el salario se le suma un porcentaje bonus 
-	 multiplicado por 0.35  y  debido a que el mes es par no se le añade nada más a
-	 su salario */
+	/**
+	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o tipo 
+	 *de moneda es "USD", por ello el salario queda igual al entrar al condicional. 
+	 *El resultado esperado para este caso es el salario mas la suma de un porcentaje 
+	 *bonus multiplicado por 0.35 y debido a que el mes es par no se le añade nada más a
+	 *su salario 
+	 **/
 	@Test
 	public void csSupervisorUSDTest() {
-		Employee employee = new Employee(550,"USD",10,EmployeeType.Supervisor);
-		assertEquals(550,employee.cs(),5);
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Supervisor);
+		assertEquals(517.5f, employee.cs(), 0.0f);
 	
 	}
 	
-	/*Para esta prueba el tipo de empleado es Manager. Además, el currency o tipo 
-	 de moneda es "USD", por ello el salario queda igual al entrar al condicional.
-	 El resultado esperado para este caso el salario se le suma un porcentaje bonus 
-	 multiplicado por 0.7 y debido a que el mes es par no se le añade nada más a
-	 su salario */		
+	/**
+	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o tipo 
+	 *de moneda es "USD", por ello el salario queda igual al entrar al condicional.
+	 *El resultado esperado para este caso es el salario mas la suma de un porcentaje 
+	 *bonus multiplicado por 0.7 y debido a que el mes es par no se le añade nada más a
+	 *su salario 
+	 */		
 	@Test
 	public void csManagerUSDTest() {
-		Employee employee = new Employee(750,"USD",10,EmployeeType.Manager);
-		assertEquals(750,employee.cs(),5);
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Manager);
+		assertEquals(535f, employee.cs(), 0.0f);
 		
 	}
 	
-	
-	/*Para esta prueba el tipo de empleado es Supervisor.Además, el currency o 
-	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
-	 El resultado esperado viene a ser igual al rmu*/
-	
+	/**
+	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
+     *salario se ve reducido en un 5%. El resultado esperado para este caso solo es 
+     *el salario resultante de la disminución. No se añade el décimo debido a que 
+     *este mes no es impar.
+     **/
 	@Test
-	public void CalculateYearBonusWorkerUSDtest() {
-		Employee employee = new Employee(350,"USD",20,EmployeeType.Worker);
-		assertEquals(386.0, employee.CalculateYearBonus(),5.0);
+	public void csWorkerEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Worker);
+		assertEquals(475, employee.cs(), 0.0f);
 	}
 	
-	/*Para esta prueba el tipo de empleado es Supervisor.Además, el currency o 
-	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
-	 El resultado esperado para esta prueba, viene de: salario + rmu * 0.5*/
-	
+	/**
+	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
+     *salario se ve reducido en un 5%. El resultado esperado para este caso es el
+     *salario resultante de la disminución mas la suma de un porcentaje bonus 
+	 *multiplicado por 0.35, aunque no se añade el décimo debido a que este mes no
+	 *es impar.
+     **/
 	@Test
-	public void CalculateYearBonusSupervisorUSDtest() {
-		Employee employee = new Employee(450,"USD",20,EmployeeType.Supervisor);
-		assertEquals(643.5,employee.CalculateYearBonus(),5.0);
+	public void csSupervisorEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Supervisor);
+		assertEquals(492.5f, employee.cs(), 0.0f);
+	
 	}
 	
-	/*Para esta prueba el tipo de empleado es Manager.Además, el currency o 
-	 tipo de moneda es "USD", por ello el salario no se multiplica por ningún valor. 
-	 El resultado esperado para esta prueba, viene de:salario + rmu * 1.0*/
-	
+	/**
+	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
+     *salario se ve reducido en un 5%. El resultado esperado para este caso es el
+     *salario resultante de la disminución mas la suma de un porcentaje bonus 
+	 *multiplicado por 0.7, aunque no se añade el décimo debido a que este mes no
+	 *es impar.
+     **/		
 	@Test
-	public void CalculateYearBonusManagerUSDtest() {
-		Employee employee = new Employee(600,"USD",20,EmployeeType.Manager);
-		assertEquals(986.0,employee.CalculateYearBonus(),5.0);
+	public void csManagerEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Manager);
+		assertEquals(510, employee.cs(), 0.0f);
+		
+	}
+	
+	// PRUEBAS PARA METODO CalculateYearBonus()
+	
+	/**
+	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
+	 *tipo de moneda es "USD", por ello el salario no se ve afectado. 
+	 *El resultado esperado viene a ser igual al rmu.
+	 */	
+	@Test
+	public void calculateYearBonusWorkerUSDTest() {
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Worker);
+		assertEquals(386.0f, employee.CalculateYearBonus(), 0.0f);
+	}
+	
+	/**
+	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o 
+	 *tipo de moneda es "USD", por ello el salario no se ve afectado.
+	 *El resultado esperado para esta prueba, viene de: salario + rmu * 0.5
+	 */	
+	@Test
+	public void calculateYearBonusSupervisorUSDTest() {
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Supervisor);
+		assertEquals(693.0f, employee.CalculateYearBonus(), 0.0f);
+	}
+	
+	/**
+	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o 
+	 *tipo de moneda es "USD", por ello el salario no se ve afectado. 
+	 *El resultado esperado para esta prueba, viene de: salario + rmu * 1.0
+	 */
+	@Test
+	public void calculateYearBonusManagerUSDTest() {
+		Employee employee = new Employee(500,"USD",50,EmployeeType.Manager);
+		assertEquals(886.0f, employee.CalculateYearBonus(), 0.0f);
 	}
 
+	/**
+	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el salario 
+	 *se ve disminuido en un 5%. 
+	 *El resultado esperado viene a ser igual al rmu.
+	 */
+	@Test
+	public void calculateYearBonusWorkerEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Worker);
+		assertEquals(386.0f, employee.CalculateYearBonus(), 0.0f);
+	}
 	
+	/**
+	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el salario 
+	 *se ve disminuido en un 5%. 
+	 *El resultado esperado de esta prueba, viene de: salario resultante + rmu*0.5
+	 */
+	@Test
+	public void calculateYearBonusSupervisorEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Supervisor);
+		assertEquals(668.0f, employee.CalculateYearBonus(), 0.0f);
+	}
+	
+	/**
+	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o 
+	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el salario 
+	 *se ve disminuido en un 5%. 
+	 *El resultado esperado de esta prueba, viene de: salario resultante + rmu*1.0
+	 */
+	@Test
+	public void calculateYearBonusManagerEuroTest() {
+		Employee employee = new Employee(500,"Euro",50,EmployeeType.Manager);
+		assertEquals(861.0f, employee.CalculateYearBonus(), 0.0f);
+	}
 	
 
 }

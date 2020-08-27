@@ -20,8 +20,9 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
 	 *tipo de moneda es "USD", por ello el salario queda igual al entrar al
-     *condicional. El resultado esperado para este caso es el mismo salario, esto 
-     *debido a que el mes es par, por lo que no se le añade el decimo a su salario 
+     *condicional. El resultado esperado para este caso depende del mes. Si el mes
+     *es par, el valor esperado es el mismo salario. Si el mes es impar, el valor
+     *esperado es la suma del salario + rmu/12*2.
      **/
 	@Test
 	public void csWorkerUSDTest() {
@@ -41,9 +42,9 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o tipo 
 	 *de moneda es "USD", por ello el salario queda igual al entrar al condicional. 
-	 *El resultado esperado para este caso es el salario mas la suma de un porcentaje 
-	 *bonus multiplicado por 0.35 y debido a que el mes es par no se le añade nada más a
-	 *su salario 
+	 *El resultado esperado para este caso es el salario más la suma de un porcentaje 
+	 *bonus multiplicado por 0.35 más el decimo (rmu/12*2) en caso de que el mes sea
+	 *impar. Si es par, el resultado esperado solo es el salario más la bonificación.
 	 **/
 	@Test
 	public void csSupervisorUSDTest() {
@@ -64,10 +65,10 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o tipo 
 	 *de moneda es "USD", por ello el salario queda igual al entrar al condicional.
-	 *El resultado esperado para este caso es el salario mas la suma de un porcentaje 
-	 *bonus multiplicado por 0.7 y debido a que el mes es par no se le añade nada más a
-	 *su salario 
-	 */		
+	 *El resultado esperado para este caso es el salario más la suma de un porcentaje 
+	 *bonus multiplicado por 0.7 más el decimo (rmu/12*2) en caso de que el mes sea
+	 *impar. Si es par, el resultado esperado solo es el salario más la bonificación.
+	 **/	
 	@Test
 	public void csManagerUSDTest() {
 		Employee employee = new Employee(500,"USD",50,EmployeeType.Manager);
@@ -87,9 +88,10 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
 	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
-     *salario se ve reducido en un 5%. El resultado esperado para este caso solo es 
-     *el salario resultante de la disminución. No se añade el décimo debido a que 
-     *este mes no es impar.
+     *salario se ve reducido en un 5%. El resultado esperado para este caso depende 
+     *del mes. Si el mes es par, el valor esperado es el salario resultante después 
+     *de la disminución. Si el mes es impar, el valor esperado es la suma del salario 
+     *resultante + rmu/12*2.
      **/
 	@Test
 	public void csWorkerEuroTest() {
@@ -109,11 +111,12 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Supervisor. Además, el currency o 
 	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
-     *salario se ve reducido en un 5%. El resultado esperado para este caso es el
-     *salario resultante de la disminución mas la suma de un porcentaje bonus 
-	 *multiplicado por 0.35, aunque no se añade el décimo debido a que este mes no
-	 *es impar.
-     **/
+     *salario se ve reducido en un 5%. El resultado esperado para este caso es el 
+     *salario resultante de la disminución más la suma de un porcentaje bonus 
+     *multiplicado por 0.35 más el decimo (rmu/12*2) en caso de que el mes sea
+	 *impar. Si es par, el resultado esperado solo es el salario resultante más 
+	 *la bonificación.
+	 **/
 	@Test
 	public void csSupervisorEuroTest() {
 		Employee employee = new Employee(500,"Euro",50,EmployeeType.Supervisor);
@@ -133,11 +136,12 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Manager. Además, el currency o 
 	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el 
-     *salario se ve reducido en un 5%. El resultado esperado para este caso es el
-     *salario resultante de la disminución mas la suma de un porcentaje bonus 
-	 *multiplicado por 0.7, aunque no se añade el décimo debido a que este mes no
-	 *es impar.
-     **/		
+     *salario se ve reducido en un 5%. El resultado esperado para este caso es el 
+     *salario resultante de la disminución más la suma de un porcentaje bonus 
+     *multiplicado por 0.7 más el decimo (rmu/12*2) en caso de que el mes sea
+	 *impar. Si es par, el resultado esperado solo es el salario resultante más 
+	 *la bonificación.
+	 **/
 	@Test
 	public void csManagerEuroTest() {
 		Employee employee = new Employee(500,"Euro",50,EmployeeType.Manager);
@@ -192,8 +196,7 @@ public class EmployeeTest {
 	/**
 	 *Para esta prueba el tipo de empleado es Worker. Además, el currency o 
 	 *tipo de moneda es diferente a "USD", en este caso es "Euro", por ello el salario 
-	 *se ve disminuido en un 5%. 
-	 *El resultado esperado viene a ser igual al rmu.
+	 *se ve disminuido en un 5%. El resultado esperado viene a ser igual al rmu.
 	 */
 	@Test
 	public void calculateYearBonusWorkerEuroTest() {
@@ -225,6 +228,4 @@ public class EmployeeTest {
 		assertEquals(861.0f, employee.CalculateYearBonus(), 0.0f);
 	}
 	
-
 }
-

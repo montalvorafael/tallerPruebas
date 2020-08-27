@@ -3,6 +3,10 @@ package test;
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 import org.junit.Test;
 
 
@@ -22,7 +26,16 @@ public class EmployeeTest {
 	@Test
 	public void csWorkerUSDTest() {
 		Employee employee = new Employee(500,"USD",50,EmployeeType.Worker);
-		assertEquals(500f, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=500.000f;
+		else
+			valor=564.333f;
+		assertEquals(valor, employee.cs(), 0.001f);
 	}
 	
 	/**
@@ -35,7 +48,16 @@ public class EmployeeTest {
 	@Test
 	public void csSupervisorUSDTest() {
 		Employee employee = new Employee(500,"USD",50,EmployeeType.Supervisor);
-		assertEquals(517.5f, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=517.500f;
+		else
+			valor=581.833f;
+		assertEquals(valor, employee.cs(), 0.001f);
 	
 	}
 	
@@ -49,7 +71,16 @@ public class EmployeeTest {
 	@Test
 	public void csManagerUSDTest() {
 		Employee employee = new Employee(500,"USD",50,EmployeeType.Manager);
-		assertEquals(535f, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=535.000f;
+		else
+			valor=599.333f;
+		assertEquals(valor, employee.cs(), 0.001f);
 		
 	}
 	
@@ -63,7 +94,16 @@ public class EmployeeTest {
 	@Test
 	public void csWorkerEuroTest() {
 		Employee employee = new Employee(500,"Euro",50,EmployeeType.Worker);
-		assertEquals(475, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=475.000f;
+		else
+			valor=539.333f;
+		assertEquals(valor, employee.cs(), 0.001f);
 	}
 	
 	/**
@@ -77,7 +117,16 @@ public class EmployeeTest {
 	@Test
 	public void csSupervisorEuroTest() {
 		Employee employee = new Employee(500,"Euro",50,EmployeeType.Supervisor);
-		assertEquals(492.5f, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=492.500f;
+		else
+			valor=556.833f;
+		assertEquals(valor, employee.cs(), 0.001f);
 	
 	}
 	
@@ -92,7 +141,16 @@ public class EmployeeTest {
 	@Test
 	public void csManagerEuroTest() {
 		Employee employee = new Employee(500,"Euro",50,EmployeeType.Manager);
-		assertEquals(510, employee.cs(), 0.0f);
+		Date date = new Date();
+		LocalDate localDate;
+        localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        int month = localDate.getMonthValue();
+		float valor;
+        if(month%2==0)
+			valor=510.000f;
+		else
+			valor=574.333f;
+		assertEquals(valor, employee.cs(), 0.001f);
 		
 	}
 	
